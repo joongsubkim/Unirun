@@ -12,14 +12,14 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded = false; //바닥에 닿았는지 나타냄
     private bool isDead = false; // 사망 상태
 
-    private Rigidbody2D PlayerRigidbody; //사용할 리지드 바디 컴포넌트
+    private Rigidbody2D playerRigidbody; //사용할 리지드 바디 컴포넌트 //
     private Animator Animator; //사용할 애니메이터 컴포넌트
     private AudioSource playerAudio; //사용할 오디오 소스 컴포넌트
     private void Start ()
     {
         //초기화
         //게임 오브젝트로부터 사용할 컴포넌트들을 가져와 변수에 할당
-        PlayerRigidbody = GetComponent<Rigidbody2D>();
+        playerRigidbody = GetComponent<Rigidbody2D>();
         Animator = GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
     }
@@ -39,17 +39,17 @@ public class PlayerController : MonoBehaviour
         {//점프횟수 증가
             jumpCount++;
             //점프 직전에 속도를 순간적으로 제로 (0,0)로 변경
-            PlayerRigidbody.velocity = Vector2.zero;
+            playerRigidbody.velocity = Vector2.zero;
             //리지드 바디에 위쪽으로 힘 주기
-            PlayerRigidbody.AddForce(new Vector2(0, jumpForce));
+            playerRigidbody.AddForce(new Vector2(0, jumpForce));
             //오디오 소스 재생
             playerAudio.Play();
         }
-        else if (Input.GetMouseButtonUp(0) && PlayerRigidbody.velocity.y > 0)
+        else if (Input.GetMouseButtonUp(0) && playerRigidbody.velocity.y > 0)
         {
             //마우스 왼쪽 버튼에서 손을 때는 순간 && 속도의 y 값이 양수라면 (위로 상승 중)
             //현재 속도를 절반으로 변경
-            PlayerRigidbody.velocity = PlayerRigidbody.velocity * 0.5f;
+            playerRigidbody.velocity = playerRigidbody.velocity * 0.5f;
         }
         //애니메이터의 ground파라미터를 isGrounded 값으로 갱신
         Animator.SetBool("Grounded", isGrounded);
