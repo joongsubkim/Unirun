@@ -65,6 +65,9 @@ public class PlayerController : MonoBehaviour
 
         //속도를 제로(0,0)로 변경
         isDead = true;
+        //게임 매니저의 게임오버 처리 실행
+        GameManager.instance.OnPlayerDead();
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -87,6 +90,7 @@ public class PlayerController : MonoBehaviour
             jumpCount = 0;
         }
     }
+    
 
     private void OnCollisionExit2D(Collision2D collision)
     {
