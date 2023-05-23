@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
         //게임오버가 아니라면
         if(!isGameover)
         {
+           
             //점수를 증가
             score += newScore;
             scoreText.text = "Score : " + score;
